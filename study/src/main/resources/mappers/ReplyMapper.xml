@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<mapper namespace="study.spring.mapper.ReplyMapper">
+		<insert id="insert">
+			insert into `reply`(num,reply,replyer)
+			values(#{num},#{reply},#{replyer})
+		</insert>
+		<select id="selectReplyList" resultType="ReplyVO">
+			SELECT @rownum:=@rownum+1 AS rowNum,`reply`.* FROM `reply`/*!USE INDEX(PRIMARY)*/,
+			(SELECT @rownum:=0)R WHERE num=#{num} ORDER BY rnum ASC
+		</select>
+		<delete id="delete">
+			DELETE FROM `reply` WHERE rnum=#{rnum}
+		</delete>
+		<update id="update">
+			UPDATE `reply` 
+			SET reply=#{reply},update_date=CURRENT_TIMESTAMP WHERE rnum=#{rnum}
+		</update>
+	</mapper>
