@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,8 +24,14 @@
 		<li><label>Reply</label><input id="reply">
 		<li><button id="new" type="button">Submit</button>
 	</ul>
-<jsp:include page="../board/replyList.jsp"/>
-
+	<h1>댓글</h1>
+	<c:forEach var="list" items="${reply}">
+		<ul>
+			<li><input id="num" value="${list.num}" hidden="true">
+			<li><input id="replyer" value='<c:out value="${list.replyer}"/>' readonly="readonly"><fmt:formatDate pattern="yyyy-MM-dd" value="${list.update_date}"/>
+			<li><input id="reply" value='<c:out value="${list.reply}"/>' readonly="readonly"><button id="modify${list.num}">modify</button><button id="delete">delete</button>
+		</ul>
+	</c:forEach>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -35,8 +42,13 @@
 				url:"/lookie/replies/new",
 				data:JSON.stringify(data),
 				contentType : "application/json; charset=UTF-8",
-				
+				success: function(){
+					location.href="/lookie/board/select?num="+$("#num").val()+"&page="+$("#page").val();
+				}
 			});
+		});
+		$("#modify"+$(""+$(list.num).val())).click(function(){
+			$("input[id=reply]").attr("readonly", false);
 		});
 	});
 </script>

@@ -21,12 +21,9 @@ public class ReplyController {
 	@Autowired
 	private ReplyService service;
 	@PostMapping(value = "/new", consumes ="application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
-	public void register(@RequestBody ReplyVO replyVO) {
+	public String register(@RequestBody ReplyVO replyVO) {
 		service.register(replyVO);
+		return "redirct:";
 	}
-	@GetMapping("/list")
-	public String list(@RequestParam("num") int num,@RequestParam("page") int page, Model model) {
-		model.addAttribute("reply",service.selectReplyList(num));
-		return "redirect:/lookie/board/select?num="+num+"&page="+page;
-	}
+	
 }

@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import study.spring.dto.BoardPageDTO;
 import study.spring.dto.PageDTO;
 import study.spring.service.BoardService;
+import study.spring.service.ReplyService;
 import study.spring.vo.BoardVO;
 
 @Controller
@@ -23,6 +24,8 @@ import study.spring.vo.BoardVO;
 public class BoardController {
 	@Autowired
 	private BoardService service;
+	@Autowired
+	private ReplyService rservice;
 	@GetMapping("/list")
 	public void list(@RequestParam("page") int page,Model model) {
 		model.addAttribute("list",service.selectBoardList(page));
@@ -51,6 +54,7 @@ public class BoardController {
 	public void select(@RequestParam("num") int num,@RequestParam("page") int page ,Model model) {
 		model.addAttribute("board",service.selectBoard(num));
 		model.addAttribute("page", page);
+		model.addAttribute("reply",rservice.selectReplyList(num));//댓글때문에 여기로
 	}
 	
 	@PostMapping("/update")
