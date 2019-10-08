@@ -10,6 +10,8 @@ public interface ReplyMapper {
 	
 	public List<ReplyVO> selectReplyList(int num);
 	
+	public ReplyVO selectReply(int rnum);
+	
 	public void delete(int rnum);
 	
 	public void update(ReplyVO replyVO);

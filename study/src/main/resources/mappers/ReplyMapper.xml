@@ -12,6 +12,9 @@
 			SELECT @rownum:=@rownum+1 AS rowNum,`reply`.* FROM `reply`/*!USE INDEX(PRIMARY)*/,
 			(SELECT @rownum:=0)R WHERE num=#{num} ORDER BY rnum ASC
 		</select>
+		<select id="selectReply" resultType="ReplyVO">
+			SELECT * FROM `reply` WHERE rnum=#{rnum}		
+		</select>
 		<delete id="delete">
 			DELETE FROM `reply` WHERE rnum=#{rnum}
 		</delete>

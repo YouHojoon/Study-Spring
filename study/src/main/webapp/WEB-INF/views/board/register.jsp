@@ -18,5 +18,6 @@
 			<button type="button" onclick="location.href='/lookie/board/list?page=${page}'">List</button>
 		</ul>
 	</form>
+	
 </body>
 </html>
