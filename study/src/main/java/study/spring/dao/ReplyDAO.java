@@ -20,7 +20,7 @@ public class ReplyDAO {
 		sqlsession.insert(NameSpace+".insert",replyVO);
 	}
 	public ReplyVO selectRelply(int rnum) {
-		return sqlsession.selectOne(NameSpace+".selectBoard", rnum);
+		return sqlsession.selectOne(NameSpace+".selectReply",rnum);
 	}
 	public void delete(int rnum) {
 		sqlsession.delete(NameSpace+".delete", rnum);

@@ -29,7 +29,7 @@
 		<ul>
 			<li><input id="num" value="${list.num}" hidden="true">
 			<li><input id="replyer" value='<c:out value="${list.replyer}"/>' readonly="readonly"><fmt:formatDate pattern="yyyy-MM-dd" value="${list.update_date}"/>
-			<li><input id="reply" value='<c:out value="${list.reply}"/>' readonly="readonly"><button id="modify${list.num}">modify</button><button id="delete">delete</button>
+			<li><input id="reply" value='<c:out value="${list.reply}"/>' readonly><button id="update" onclick="location.href='/lookie/replies/updateR?rnum=${list.rnum}&page=${page}'">Update</button><button id="delete">delete</button>
 		</ul>
 	</c:forEach>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -46,9 +46,6 @@
 					location.href="/lookie/board/select?num="+$("#num").val()+"&page="+$("#page").val();
 				}
 			});
-		});
-		$("#modify"+$(""+$(list.num).val())).click(function(){
-			$("input[id=reply]").attr("readonly", false);
 		});
 	});
 </script>

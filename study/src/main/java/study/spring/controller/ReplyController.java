@@ -2,6 +2,7 @@ package study.spring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,8 +15,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import study.spring.service.ReplyService;
 import study.spring.vo.ReplyVO;
 
-@RestController
-@RequestMapping("/replies")
+@Controller
+@RequestMapping("/replies/*")
 @SessionAttributes("reply")
 public class ReplyController {
 	@Autowired
@@ -23,7 +24,14 @@ public class ReplyController {
 	@PostMapping(value = "/new", consumes ="application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
 	public String register(@RequestBody ReplyVO replyVO) {
 		service.register(replyVO);
-		return "redirct:";
+		return "redirect:";
 	}
+	@GetMapping("/updateR")
+	public void updateR(@RequestParam int rnum,@RequestParam int page, Model model) {
+		model.addAttribute("replySelect",service.selectReply(rnum));
+		model.addAttribute("page",page);
+		
+	}
+	
 	
 }
