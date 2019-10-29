@@ -2,6 +2,7 @@ package study.spring.vo;
 
 import java.sql.Timestamp;
 
+
 public class ReplyVO {
 	private int rnum;
 	private int num;
@@ -9,6 +10,7 @@ public class ReplyVO {
 	private String replyer;
 	private Timestamp reply_date;
 	private Timestamp update_date;
+	
 	public int getNum() {
 		return num;
 	}
@@ -39,5 +41,6 @@ public class ReplyVO {
 	public Timestamp getReply_date() {
 		return reply_date;
 	}
+	
 	
 }

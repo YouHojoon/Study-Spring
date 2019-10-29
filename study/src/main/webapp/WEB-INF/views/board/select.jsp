@@ -25,10 +25,20 @@
 		<li><button id="new" type="button">Submit</button>
 	</ul>
 	<h1>댓글</h1>
+	<c:set var="now" value="<%=new java.util.Date().getTime()%>"/>
+	
 	<c:forEach var="list" items="${reply}">
 		<ul>
 			<li><input id="num" value="${list.num}" hidden="true">
-			<li><input id="replyer" value='<c:out value="${list.replyer}"/>' readonly="readonly"><fmt:formatDate pattern="yyyy-MM-dd" value="${list.update_date}"/>
+			<li><input id="replyer" value='<c:out value="${list.replyer}"/>' readonly="readonly">
+			<c:choose>
+				<c:when test="${now-list.update_date.getTime()<(1000*60*60*24)}">
+					<fmt:formatDate pattern="HH:mm:ss" value="${list.update_date}"/>
+				</c:when>
+				<c:otherwise>
+					<fmt:formatDate pattern="yyyy-MM-dd" value="${list.update_date}"/>
+				</c:otherwise>
+			</c:choose>
 			<li><input id="reply" value='<c:out value="${list.reply}"/>' readonly><button id="update" onclick="location.href='/lookie/replies/updateR?rnum=${list.rnum}&page=${page}'">Update</button><button id="delete">delete</button>
 		</ul>
 	</c:forEach>

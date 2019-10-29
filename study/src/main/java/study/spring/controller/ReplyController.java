@@ -9,29 +9,26 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import study.spring.service.ReplyService;
 import study.spring.vo.ReplyVO;
 
 @Controller
 @RequestMapping("/replies/*")
-@SessionAttributes("reply")
 public class ReplyController {
 	@Autowired
 	private ReplyService service;
 	@PostMapping(value = "/new", consumes ="application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
-	public String register(@RequestBody ReplyVO replyVO) {
+	public void register(@RequestBody ReplyVO replyVO) {
 		service.register(replyVO);
-		return "redirect:";
 	}
 	@GetMapping("/updateR")
 	public void updateR(@RequestParam int rnum,@RequestParam int page, Model model) {
 		model.addAttribute("replySelect",service.selectReply(rnum));
-		model.addAttribute("page",page);
-		
+		model.addAttribute("page",page);	
 	}
-	
-	
+	@PostMapping(value="/updateR", consumes = "application/json", produces= {MediaType.TEXT_PLAIN_VALUE})
+	public void postUpdateR(@RequestBody ReplyVO replyVO) {
+		service.update(replyVO);
+	}
 }
