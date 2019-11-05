@@ -55,14 +55,14 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#new").click(function(){
-			var data={num:$("#num").val(), replyer:$("#replyer").val(), reply:$("#reply").val()};
+			var reply={num:$("#num").val(),reply:$("#reply").val(),replyer:$("#replyer").val()};
 			$.ajax({
 				type:"post",
-				url:"/lookie/replies/new",
-				data:JSON.stringify(data),
-				contentType : "application/json; charset=UTF-8",
-				success: function(){
-					location.href="/lookie/board/select?num="+$("#num").val()+"&page="+$("#page").val()+"&rpage=1";
+				url:"/lookie/replies/new?page="+$("#page").val(),
+				data:JSON.stringify(reply),
+				contentType:"application/json; charset=UTF-8",
+				success:function(){
+					location.replace="/lookie/board/select?num="+$("#num").val()+"&page="+$("#page").val()+"&rpage=1";
 				}
 			});
 		});

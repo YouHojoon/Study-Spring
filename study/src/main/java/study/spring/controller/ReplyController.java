@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import study.spring.service.ReplyService;
 import study.spring.vo.ReplyVO;
@@ -20,10 +21,11 @@ public class ReplyController {
 	private ReplyService service;
 	
 	@PostMapping(value="/new", consumes ="application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
-	public void register(@RequestBody ReplyVO replyVO) {
+	public String register(@RequestBody ReplyVO replyVO, @RequestParam int page) {
 		service.register(replyVO);
+		return "redirect:";
 	}
-	
+
 	@GetMapping("/updateR")
 	public void updateR(@RequestParam int rnum,@RequestParam int page, Model model) {
 		model.addAttribute("replySelect",service.selectReply(rnum));
