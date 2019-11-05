@@ -25,7 +25,7 @@
 			<c:forEach items="${list}" var="board">
 				<tr>
 					<td><c:out value="${board.rowNum+(pageMaker.page-1)*10}"/>
-					<td><a href='/lookie/board/select?num=${board.num}&page=${pageMaker.page}'>
+					<td><a href='/lookie/board/select?num=${board.num}&page=${pageMaker.page}&rpage=1'>
 					<c:out value="${board.title}"/></a></td>
 					<td><c:out value="${board.writer}"/>
 					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.reg_date}"/>
@@ -37,7 +37,7 @@
 			<c:forEach items="${serchList}" var="board">
 				<tr>
 					<td><c:out value="${board.rowNum+(pageMaker.page-1)*10}"/>
-					<td><a href='/lookie/board/select?num=${board.num}&page=${pageMaker.page}'>
+					<td><a href='/lookie/board/select?num=${board.num}&page=${pageMaker.page}&rpage=1'>
 					<c:out value="${board.title}"/></a></td>
 					<td><c:out value="${board.writer}"/>
 					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.reg_date}"/>

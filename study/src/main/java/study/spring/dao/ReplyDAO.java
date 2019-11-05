@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import study.spring.dto.RpageDTO;
 import study.spring.vo.ReplyVO;
 @Repository
 public class ReplyDAO {
@@ -13,8 +14,8 @@ public class ReplyDAO {
 	private SqlSession sqlsession;
 	private static final String NameSpace="study.spring.mapper.ReplyMapper";
 	
-	public List<ReplyVO> selectReplyList(int num){
-		return sqlsession.selectList(NameSpace+".selectReplyList",num);
+	public List<ReplyVO> selectReplyList(RpageDTO rpageDTO){
+		return sqlsession.selectList(NameSpace+".selectReplyList",rpageDTO);
 	}
 	public void insert(ReplyVO replyVO) {
 		sqlsession.insert(NameSpace+".insert",replyVO);
@@ -27,5 +28,8 @@ public class ReplyDAO {
 	}
 	public void update(ReplyVO replyVO) {
 		sqlsession.update(NameSpace+".update",replyVO);
+	}
+	public int totalCount(int num) {
+		return sqlsession.selectOne(NameSpace+".totalCount",num);
 	}
 }

@@ -18,15 +18,18 @@ import study.spring.vo.ReplyVO;
 public class ReplyController {
 	@Autowired
 	private ReplyService service;
-	@PostMapping(value = "/new", consumes ="application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
+	
+	@PostMapping(value="/new", consumes ="application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
 	public void register(@RequestBody ReplyVO replyVO) {
 		service.register(replyVO);
 	}
+	
 	@GetMapping("/updateR")
 	public void updateR(@RequestParam int rnum,@RequestParam int page, Model model) {
 		model.addAttribute("replySelect",service.selectReply(rnum));
 		model.addAttribute("page",page);	
 	}
+	
 	@PostMapping(value="/updateR", consumes = "application/json", produces= {MediaType.TEXT_PLAIN_VALUE})
 	public void postUpdateR(@RequestBody ReplyVO replyVO) {
 		service.update(replyVO);

@@ -14,6 +14,7 @@ import org.springframework.web.method.annotation.MethodArgumentTypeMismatchExcep
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import study.spring.dto.BoardPageDTO;
 import study.spring.dto.PageDTO;
+import study.spring.dto.RpageDTO;
 import study.spring.service.BoardService;
 import study.spring.service.ReplyService;
 import study.spring.vo.BoardVO;
@@ -28,7 +29,7 @@ public class BoardController {
 	private ReplyService rservice;
 	@GetMapping("/list")
 	public void list(@RequestParam("page") int page,Model model) {
-		model.addAttribute("list",service.selectBoardList(page));
+		model.addAttribute("list",service.selectBoardListSerch(new BoardPageDTO(page)));
 		model.addAttribute("pageMaker",new PageDTO(page, service.totoalCount(new BoardPageDTO(page))));
 	}
 	@PostMapping("/list")
@@ -51,10 +52,12 @@ public class BoardController {
 		return "redirect:/board/list?page="+page;
 	}
 	@GetMapping({"/select","/update"})
-	public void select(@RequestParam("num") int num,@RequestParam("page") int page ,Model model) {
+	public void select(@RequestParam("num") int num,@RequestParam("page") int page ,
+			@RequestParam("rpage") int rpage, Model model) {
 		model.addAttribute("board",service.selectBoard(num));
 		model.addAttribute("page", page);
-		model.addAttribute("reply",rservice.selectReplyList(num));//댓글때문에 여기로
+		model.addAttribute("reply",rservice.selectReplyList(new RpageDTO(num,rpage)));//댓글때문에 여기로
+		model.addAttribute("rpageMaker",new PageDTO(rpage, rservice.totalCount(num)));
 	}
 	
 	@PostMapping("/update")

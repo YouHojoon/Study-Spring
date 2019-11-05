@@ -42,18 +42,27 @@
 			<li><input id="reply" value='<c:out value="${list.reply}"/>' readonly><button id="update" onclick="location.href='/lookie/replies/updateR?rnum=${list.rnum}&page=${page}'">Update</button><button id="delete">delete</button>
 		</ul>
 	</c:forEach>
+	<c:if test="${rpageMaker.prev}">
+		<a href="list?page=${rpageMaker.startPage-1}">Previous</a>
+	</c:if>
+	<c:forEach var="rnum" begin="${rpageMaker.startPage}" end="${rpageMaker.endPage}">
+		<a href="select?num=${board.num}&page=${page}&rpage=${rnum}">${rnum}</a>
+	</c:forEach>
+	<c:if test="${rpageMaker.next}">
+		<a href="list?page=${rpageMaker.endPage+1}">Next</a>
+	</c:if>	
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#new").click(function(){
-			var data={num:$("#num").val(), replyer:$("#replyer").val(), reply:$("#reply").val()}
+			var data={num:$("#num").val(), replyer:$("#replyer").val(), reply:$("#reply").val()};
 			$.ajax({
 				type:"post",
 				url:"/lookie/replies/new",
 				data:JSON.stringify(data),
 				contentType : "application/json; charset=UTF-8",
 				success: function(){
-					location.href="/lookie/board/select?num="+$("#num").val()+"&page="+$("#page").val();
+					location.href="/lookie/board/select?num="+$("#num").val()+"&page="+$("#page").val()+"&rpage=1";
 				}
 			});
 		});

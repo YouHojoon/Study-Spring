@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import study.spring.dao.ReplyDAO;
+import study.spring.dto.RpageDTO;
 import study.spring.vo.ReplyVO;
 
 @Service
@@ -21,8 +22,8 @@ public class ReplyServiceImpl implements ReplyService{
 		return dao.selectRelply(rnum);
 	}
 	@Override
-	public List<ReplyVO> selectReplyList(int num) {
-		return dao.selectReplyList(num);
+	public List<ReplyVO> selectReplyList(RpageDTO rpageDTO) {
+		return dao.selectReplyList(rpageDTO);
 	}
 	@Override
 	public void update(ReplyVO replyVO) {
@@ -32,5 +33,8 @@ public class ReplyServiceImpl implements ReplyService{
 	public void delete(int rnum) {
 		dao.delete(rnum);
 	}
-	
+	@Override
+	public int totalCount(int num) {
+		return dao.totalCount(num);
+	}
 }
