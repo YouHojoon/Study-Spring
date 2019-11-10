@@ -39,7 +39,7 @@
 					<fmt:formatDate pattern="yyyy-MM-dd" value="${list.update_date}"/>
 				</c:otherwise>
 			</c:choose>
-			<li><input id="reply" value='<c:out value="${list.reply}"/>' readonly><button id="update" onclick="location.href='/lookie/replies/updateR?rnum=${list.rnum}&page=${page}'">Update</button><button id="delete">delete</button>
+			<li><input id="reply" value='<c:out value="${list.reply}"/>' readonly><button id="update" onclick="location.href='/lookie/replies/updateR?rnum=${list.rnum}&page=${page}&rpage=${rpageMaker.page}'">Update</button><button id="delete">Delete</button>
 		</ul>
 	</c:forEach>
 	<c:if test="${rpageMaker.prev}">

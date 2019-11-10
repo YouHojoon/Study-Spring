@@ -9,26 +9,30 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import study.spring.service.ReplyService;
 import study.spring.vo.ReplyVO;
 
-@Controller
+@RestController
 @RequestMapping("/replies/*")
 public class ReplyController {
 	@Autowired
 	private ReplyService service;
 	
 	@PostMapping(value="/new", consumes ="application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
-	public String register(@RequestBody ReplyVO replyVO, @RequestParam int page) {
+	public void register(@RequestBody ReplyVO replyVO, @RequestParam int page) {
 		service.register(replyVO);
-		return "redirect:/board/select?num="+replyVO.getNum()+"&page="+page+"&rpage=1";
 	}
 
 	@GetMapping("/updateR")
-	public void updateR(@RequestParam int rnum,@RequestParam int page, Model model) {
-		model.addAttribute("replySelect",service.selectReply(rnum));
-		model.addAttribute("page",page);	
+	public ModelAndView updateR(@RequestParam int rnum,@RequestParam int page,@RequestParam int rpage, ModelAndView model) {
+		model.addObject("replySelect",service.selectReply(rnum));
+		model.addObject("page",page);
+		model.addObject("rpage",rpage);
+		model.setViewName("/replies/updateR");
+		return model;
 	}
 	
 	@PostMapping(value="/updateR", consumes = "application/json", produces= {MediaType.TEXT_PLAIN_VALUE})
