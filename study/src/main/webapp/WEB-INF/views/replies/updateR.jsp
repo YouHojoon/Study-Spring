@@ -15,6 +15,7 @@
 		<li><input id="replyer" value="${replySelect.replyer}">
 		<li><input id="reply" value="${replySelect.reply}"><button id="update">Update</button>
 		<button id="back" onclick="location.href='/lookie/board/select?num=${replySelect.num}&page=${page}&rpage=${rpage}'">Back</button>
+		<button id="delete">Delete</button>	
 	</ul>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -31,6 +32,20 @@
 					location.href="/lookie/board/select?num="+$("#num").val()+"&page=" +$("#page").val()+"&rpage=1";
 				}
 			});
+		});
+		$("#delete").click(function(){
+			var check=confirm("정말 삭제하시겠습니까?");
+			if(check){
+				$.ajax({
+					type:"delete",
+					url:"/lookie/replies/deleteR?rnum="+$("#rnum").val(),
+					success:function(){
+						location.href="/lookie/board/select?num="+$("#num").val()+"&page=" +$("#page").val()+"&rpage=1";
+					}
+				});
+			}
+			else
+				return;
 		});
 	});
 </script>

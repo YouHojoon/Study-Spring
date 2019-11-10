@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -38,5 +39,9 @@ public class ReplyController {
 	@PostMapping(value="/updateR", consumes = "application/json", produces= {MediaType.TEXT_PLAIN_VALUE})
 	public void postUpdateR(@RequestBody ReplyVO replyVO) {
 		service.update(replyVO);
+	}
+	@DeleteMapping("/deleteR")
+	public void deleteR(@RequestParam int rnum) {
+		service.delete(rnum);
 	}
 }

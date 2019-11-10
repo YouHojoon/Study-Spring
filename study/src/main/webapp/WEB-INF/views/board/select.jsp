@@ -39,7 +39,7 @@
 					<fmt:formatDate pattern="yyyy-MM-dd" value="${list.update_date}"/>
 				</c:otherwise>
 			</c:choose>
-			<li><input id="reply" value='<c:out value="${list.reply}"/>' readonly><button id="update" onclick="location.href='/lookie/replies/updateR?rnum=${list.rnum}&page=${page}&rpage=${rpageMaker.page}'">Update</button><button id="delete">Delete</button>
+			<li><input id="reply" value='<c:out value="${list.reply}"/>' readonly><button id="update" onclick="location.href='/lookie/replies/updateR?rnum=${list.rnum}&page=${page}&rpage=${rpageMaker.page}'">Update</button>
 		</ul>
 	</c:forEach>
 	<c:if test="${rpageMaker.prev}">
@@ -55,16 +55,16 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#new").click(function(){
-			var reply={num:$("#num").val(),reply:$("#reply").val(),replyer:$("#replyer").val()};
-			$.ajax({
-				type:"post",
-				url:"/lookie/replies/new?page="+$("#page").val(),
-				data:JSON.stringify(reply),
-				contentType:"application/json; charset=UTF-8",
-				success:function(){
-					location.replace="/lookie/board/select?num="+$("#num").val()+"&page="+$("#page").val()+"&rpage=1";
-				}
-			});
+				var reply={num:$("#num").val(),reply:$("#reply").val(),replyer:$("#replyer").val()};
+				$.ajax({
+					type:"post",
+					url:"/lookie/replies/new?page="+$("#page").val(),
+					data:JSON.stringify(reply),
+					contentType:"application/json; charset=UTF-8",
+					success:function(){
+						location.replace="/lookie/board/select?num="+$("#num").val()+"&page="+$("#page").val()+"&rpage=1";
+					}
+				});
 		});
 	});
 </script>
