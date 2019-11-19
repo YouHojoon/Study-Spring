@@ -10,7 +10,13 @@ public class BoardVO {
 	private String writer;
 	private Timestamp reg_date;
 	private Timestamp update_date;
-	
+	private int replyCnt;
+	public int getReplyCnt() {
+		return replyCnt;
+	}
+	public void setReplyCnt(int replyCnt) {
+		this.replyCnt = replyCnt;
+	}
 	public String getTitle() {
 		return title;
 	}

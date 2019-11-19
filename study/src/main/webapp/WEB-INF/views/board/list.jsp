@@ -26,7 +26,7 @@
 				<tr>
 					<td><c:out value="${board.rowNum+(pageMaker.page-1)*10}"/>
 					<td><a href='/lookie/board/select?num=${board.num}&page=${pageMaker.page}&rpage=1'>
-					<c:out value="${board.title}"/></a></td>
+					<c:out value="${board.title}"/></a><b>[<c:out value="${board.replyCnt}"/>]</b></td>
 					<td><c:out value="${board.writer}"/>
 					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.reg_date}"/>
 					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.update_date}"/>

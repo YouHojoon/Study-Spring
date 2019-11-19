@@ -60,4 +60,7 @@
 			</if>
 			ORDER BY update_date DESC limit #{page},10
 		</select>
+		<update id="updateReplyCnt">
+			update `board` set replycnt = replycnt + #{amount} where num=#{num}
+		</update>
 	</mapper>
