@@ -21,30 +21,16 @@
 				<th>수정일</th>
 			</tr>
 		</thead>
-		<c:if test="${serchList==null}">
-			<c:forEach items="${list}" var="board">
-				<tr>
-					<td><c:out value="${board.rowNum+(pageMaker.page-1)*10}"/>
-					<td><a href='/lookie/board/select?num=${board.num}&page=${pageMaker.page}&rpage=1'>
-					<c:out value="${board.title}"/></a><b>[<c:out value="${board.replyCnt}"/>]</b></td>
-					<td><c:out value="${board.writer}"/>
-					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.reg_date}"/>
-					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.update_date}"/>
-				</tr>
-			</c:forEach>
-		</c:if>
-		<c:if test="${serchList!=null}">
-			<c:forEach items="${serchList}" var="board">
-				<tr>
-					<td><c:out value="${board.rowNum+(pageMaker.page-1)*10}"/>
-					<td><a href='/lookie/board/select?num=${board.num}&page=${pageMaker.page}&rpage=1'>
-					<c:out value="${board.title}"/></a></td>
-					<td><c:out value="${board.writer}"/>
-					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.reg_date}"/>
-					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.update_date}"/>
-				</tr>
-			</c:forEach>
-		</c:if>
+		<c:forEach items="${serchList}" var="board">
+			<tr>
+				<td><c:out value="${board.rowNum+(pageMaker.page-1)*10}"/>
+				<td><a href='/lookie/board/select?num=${board.num}&page=${pageMaker.page}&rpage=1'>
+				<c:out value="${board.title}"/></a></td>
+				<td><c:out value="${board.writer}"/>
+				<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.reg_date}"/>
+				<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.update_date}"/>
+			</tr>
+		</c:forEach>
 	</table>
 	<c:if test="${pageMaker.prev}">
 		<a href="list?page=${pageMaker.startPage-1}">Previous</a>

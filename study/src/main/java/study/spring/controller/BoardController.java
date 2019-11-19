@@ -29,9 +29,11 @@ public class BoardController {
 	private BoardService service;
 	@Autowired
 	private ReplyService rservice;
+	@GetMapping("/test")
+	public void test() {}
 	@GetMapping("/list")
 	public void list(@RequestParam("page") int page,Model model) {
-		model.addAttribute("list",service.selectBoardListSerch(new BoardPageDTO(page)));
+		model.addAttribute("serchList",service.selectBoardListSerch(new BoardPageDTO(page)));
 		model.addAttribute("pageMaker",new PageDTO(page, service.totoalCount(new BoardPageDTO(page))));
 	}
 	@PostMapping("/list")
