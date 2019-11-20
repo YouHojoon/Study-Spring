@@ -48,7 +48,6 @@ public class BoardController {
 		}
 		else
 			boardPageDTO=new BoardPageDTO(page);
-		
 		model.addAttribute("serchList",service.selectBoardListSerch(boardPageDTO));	
 		model.addAttribute("pageMaker",new PageDTO(page, service.totoalCount(boardPageDTO)));
 	}
@@ -65,10 +64,10 @@ public class BoardController {
 		model.addAttribute("page",page);
 	}
 	@PostMapping("/register")
-	public String register(BoardVO boardVO,@RequestParam("page") int page,RedirectAttributes r) {
+	public String register(BoardVO boardVO,RedirectAttributes r) {
 		service.register(boardVO);
-		r.addFlashAttribute("result",boardVO.getNum());
-		return "redirect:/board/list?page="+page;
+		r.addFlashAttribute("result",1);
+		return "redirect:/board/list?page=1";
 	}
 	@GetMapping({"/select","/update"})
 	public void select(@RequestParam("num") int num,@RequestParam("page") int page ,

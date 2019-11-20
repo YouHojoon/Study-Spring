@@ -1,7 +1,9 @@
 package study.spring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,16 +28,11 @@ public class ReplyController {
 	public void register(@RequestBody ReplyVO replyVO, @RequestParam int page) {
 		service.register(replyVO);
 	}
-
-	@GetMapping("/updateR")
-	public ModelAndView updateR(@RequestParam int rnum,@RequestParam int page,@RequestParam int rpage, ModelAndView model) {
-		model.addObject("replySelect",service.selectReply(rnum));
-		model.addObject("page",page);
-		model.addObject("rpage",rpage);
-		model.setViewName("/replies/updateR");
-		return model;
+	@GetMapping(value="/selectR", produces= {MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<ReplyVO> selectR(@RequestParam("rnum") int rnum){
+		return new ResponseEntity<>(service.selectReply(rnum),HttpStatus.OK);
 	}
-	
+
 	@PostMapping(value="/updateR", consumes = "application/json", produces= {MediaType.TEXT_PLAIN_VALUE})
 	public void postUpdateR(@RequestBody ReplyVO replyVO) {
 		service.update(replyVO);

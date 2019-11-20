@@ -8,7 +8,7 @@ public class ReplyVO {
 	private int num;
 	private String reply;
 	private String replyer;
-	private Timestamp reply_date;
+	private Timestamp reg_date;
 	private Timestamp update_date;
 	
 	public int getNum() {
@@ -38,8 +38,8 @@ public class ReplyVO {
 	public int getRnum() {
 		return rnum;
 	}
-	public Timestamp getReply_date() {
-		return reply_date;
+	public Timestamp getReg_date() {
+		return reg_date;
 	}
 	
 	

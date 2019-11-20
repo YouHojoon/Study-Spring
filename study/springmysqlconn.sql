@@ -1,1 +1,1 @@
-update `board` set replyCnt = (select count(rnum) from `reply` where reply.num=`board`.num);
+select * from `reply`;
