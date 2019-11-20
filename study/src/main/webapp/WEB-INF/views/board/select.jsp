@@ -361,6 +361,10 @@
    	 				<label for="exampleFormControlInput1">Writer</label>
     				<input class="form-control" id="exampleFormControlInput1" name="writer" value='<c:out value="${board.writer}"/>' readonly="readonly">
   				</div>
+  				<div class="form-group">
+   	 					<label for="exampleFormControlInput1">Reg_Date</label>
+    					<input class="form-control" id="exampleFormControlInput1" name="reg_date" value='<fmt:formatDate pattern="yyyy-MM-dd" value="${board.reg_date}"/>' readonly="readonly">
+  				</div>
   				<div class="btn-group" role="group" aria-label="Basic example">
   					<button class="btn btn-primary" type="button" id="update" onclick="location.href='/lookie/board/update?num=${board.num}&page=${page}'">Update</button>
             		<button class="btn btn-primary" type="button" onclick="location.href='/lookie/board/list?page=${page}'">List</button>

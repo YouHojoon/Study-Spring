@@ -508,6 +508,14 @@
   				$(".modal-body").html("게시글이 등록되었습니다.");
   				$("#registerModal").modal("show");
   			}
+  			if(result=="update"){
+  				$(".modal-body").html("게시글이 수정되었습니다.");
+				$("#registerModal").modal("show");
+				}
+  			if(result=="delete"){
+  				$(".modal-body").html("게시글이 삭제되었습니다.");
+				$("#registerModal").modal("show");
+				}
   		}
   	});
   </script>

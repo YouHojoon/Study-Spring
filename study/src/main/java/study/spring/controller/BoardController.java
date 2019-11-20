@@ -69,7 +69,7 @@ public class BoardController {
 		r.addFlashAttribute("result",1);
 		return "redirect:/board/list?page=1";
 	}
-	@GetMapping({"/select","/update"})
+	@GetMapping("/select")
 	public void select(@RequestParam("num") int num,@RequestParam("page") int page ,
 			@RequestParam("rpage") int rpage, Model model) {
 		model.addAttribute("board",service.selectBoard(num));
@@ -77,23 +77,22 @@ public class BoardController {
 		model.addAttribute("reply",rservice.selectReplyList(new RpageDTO(num,rpage)));//댓글때문에 여기로
 		model.addAttribute("rpageMaker",new PageDTO(rpage, rservice.totalCount(num)));
 	}
-	
+	@GetMapping("/update")
+	public void update(@RequestParam("num") int num,@RequestParam("page") int page , Model model) {
+		model.addAttribute("board",service.selectBoard(num));
+		model.addAttribute("page", page);
+	}
 	@PostMapping("/update")
-	public String update(BoardVO boardVO,@RequestParam("page") int page,RedirectAttributes r) {
-		try {
-			service.update(boardVO);
-			r.addFlashAttribute("result", "success");
-		}catch(Exception e) {r.addFlashAttribute("result","fail");}
-		return "redirect:/board/list?page="+page;
+	public String update(BoardVO boardVO,RedirectAttributes r) {
+		service.update(boardVO);
+		r.addFlashAttribute("result", "update");
+		return "redirect:/board/list?page=1";
 	}
 	@GetMapping("/delete")
-	public String delete(@RequestParam("num") int num,@RequestParam("page") int page
-			,RedirectAttributes r) {
-		try {
-			service.delete(num);
-			r.addFlashAttribute("result", "success");
-		}catch(Exception e) {r.addFlashAttribute("result","fail");}
-		return "redirect:/board/list?page="+page;
+	public String delete(@RequestParam("num") int num,RedirectAttributes r) {
+		service.delete(num);
+		r.addFlashAttribute("result", "delete");
+		return "redirect:/board/list?page=1";
 	}
 	@ExceptionHandler({MethodArgumentTypeMismatchException.class,
 		MissingServletRequestParameterException.class})
