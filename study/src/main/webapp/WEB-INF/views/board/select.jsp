@@ -75,7 +75,7 @@
             		<button class="btn btn-primary" type="button" onclick="location.href='/lookie/board/list?page=${page}'">List</button>
 				</div>
 				<input id="page" value="${page}" hidden="true">
-            	<div class="form-group">
+            	<div class="form-group" style="padding-top: 0.5rem">
    	 				<label for="exampleFormControlInput1">Replyer</label>
     				<input class="form-control" id="replyer">
   				</div>
@@ -118,6 +118,7 @@
 							<button id="update" class="btn btn-primary btn-sm" onclick="update(${list.rnum})">Update</button>
 						</c:forEach>
   				</div>
+  				<input id="rpage" value="${rpageMaker.page}" hidden="true">
   				<div class="col-sm-12">
               		<div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate" style="float:right">
               			<ul class="pagination">
@@ -125,7 +126,7 @@
 								<li class="paginate_button page-item previous"><a tabindex="0" class="page-link" aria-controls="dataTable" href="select?num=${board.num}&page=${page}&rpage=${rpageMaker.startPage-1}">Previous</a></li>
 							</c:if>
 							<c:forEach var="rnum" begin="${rpageMaker.startPage}" end="${rpageMaker.endPage}">
-								<li id="${num}" class="paginate_button page-item" ><a tabindex="0" class="page-link" aria-controls="dataTable" href="select?num=${board.num}&page=${page}&rpage=${rnum}">${rnum}</a></li>
+								<li id="${rnum}" class="paginate_button page-item" ><a tabindex="0" class="page-link" aria-controls="dataTable" href="select?num=${board.num}&page=${page}&rpage=${rnum}">${rnum}</a></li>
 							</c:forEach>
 							<c:if test="${rpageMaker.next}">
 								<li class="paginate_button page-item next"><a tabindex="0" class="page-link" aria-controls="dataTable" href="select?num=${board.num}&page=${page}&rpage=${rpageMaker.endPage+1}">Next</a></li>
@@ -222,6 +223,8 @@
   <script src="/lookie/resources/js/sb-admin-2.min.js"></script>
   <script type="text/javascript">
 	$(document).ready(function(){
+		var rpage=$("#rpage").val();
+		document.getElementById(rpage).className="paginate_button page-item active";
 		$("#new").click(function(){
 				var reply={num:$("#num").val(),reply:$("#reply").val(),replyer:$("#replyer").val()};
 				$.ajax({

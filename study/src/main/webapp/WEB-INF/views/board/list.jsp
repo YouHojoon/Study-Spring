@@ -53,9 +53,9 @@
               <div class="table-responsive">
               	<div class="dataTables_wrapper dt-bootstrap4" id="dataTable_wrapper">
               		<div class="row">
-              			<div class="col-sm-12 col-md-6">
+              			<div class="col-sm-12">
               				<form method="post" action="/lookie/board/list">
-  								<div class="form-row align-items-center">
+  								<div class="form-row align-items-center" style="float:right">
     								<div class="col-auto my-1">
       									<label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
       										<select name="type" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
