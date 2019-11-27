@@ -3,6 +3,7 @@ package study.spring.controller;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -115,7 +116,7 @@ public class BoardController {
 	@PostMapping("/upload")
 	public ModelAndView upload(MultipartFile[] uploadFile) {
 		List<AttachFileDTO> list= new ArrayList<AttachFileDTO>();
-		String uploadFolder ="C:\\Users\\USER\\Desktop\\temp";
+		String uploadFolder ="C:\\Users\\N\\Desktop\\upload";
 		SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");
 		Date date= new Date();
 		String str=sdf.format(date);
@@ -150,11 +151,10 @@ public class BoardController {
 		return modelAndView;
 	}
 	@GetMapping("/display")
-	@ResponseBody
-	public ResponseEntity<byte[]> getFile(String fileName){
-		File file= new File("C:\\Users\\USER\\Desktop\\temp"+fileName);
+	public ResponseEntity<byte[]> getFile(@RequestParam("fileName") String fileName){
 		ResponseEntity<byte[]> result = null;
 		try {
+			File file= new File(fileName);
 			HttpHeaders httpHeaders= new HttpHeaders();
 			httpHeaders.add("Content-Type", Files.probeContentType(file.toPath()));
 			result= new ResponseEntity<>(FileCopyUtils.copyToByteArray(file),httpHeaders,HttpStatus.OK);
