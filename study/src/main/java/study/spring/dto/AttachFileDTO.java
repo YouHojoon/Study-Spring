@@ -1,10 +1,22 @@
 package study.spring.dto;
 
+import java.net.URLEncoder;
+
 public class AttachFileDTO {
 	private String fileName;
 	private String uploadPath;
 	private String uuid;
 	private boolean image;
+	private String encodePath;
+	
+	public String getEncodePath() {
+		return encodePath;
+	}
+	public void setEncodePath(String uploadPath,String fileName) {
+		try {
+			encodePath=URLEncoder.encode(uploadPath+"\\"+fileName,"UTF-8");
+		}catch(Exception e) {e.printStackTrace();}
+	}
 	public String getFileName() {
 		return fileName;
 	}

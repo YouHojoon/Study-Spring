@@ -21,16 +21,16 @@ public class ReplyController {
 	@Autowired
 	private ReplyService service;
 	
-	@PostMapping(value="/new", consumes ="application/json", produces = {MediaType.TEXT_PLAIN_VALUE})
+	@PostMapping(value="/new", consumes ="application/json", produces = MediaType.TEXT_PLAIN_VALUE)
 	public void register(@RequestBody ReplyVO replyVO, @RequestParam int page) {
 		service.register(replyVO);
 	}
-	@GetMapping(value="/selectR", produces= {MediaType.APPLICATION_JSON_UTF8_VALUE})
+	@GetMapping(value="/selectR", produces= MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<ReplyVO> selectR(@RequestParam("rnum") int rnum){
 		return new ResponseEntity<>(service.selectReply(rnum),HttpStatus.OK);
 	}
 
-	@PostMapping(value="/updateR", consumes = "application/json", produces= {MediaType.TEXT_PLAIN_VALUE})
+	@PostMapping(value="/updateR", consumes = "application/json", produces= MediaType.TEXT_PLAIN_VALUE)
 	public void postUpdateR(@RequestBody ReplyVO replyVO) {
 		service.update(replyVO);
 	}
