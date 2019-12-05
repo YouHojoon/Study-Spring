@@ -11,18 +11,20 @@
 </head>
 <style>
 	.bigPictureWrapper{
-	background-color:gray;
-	background: rgba(255,255,255,0.5);
+	position:fixed;
+	display:none;
+	justify-content:center;
+	top:0%;
+	left:0%;
+	background-color:rgba(29,31,33,.95);
 	align-items: center;
 	width: 100%;
 	height: 100%;
 	}
 	.bigPicture{
-			
 		display:flex;
 		position: relative;
 		align-self: center;
-		
 	}
 </style>
 <body>
@@ -36,10 +38,10 @@
 			<c:set value="${num+1}" var="num"></c:set>
 				<c:choose>
 					<c:when test="${upload.image==true}">
-						<li><img onclick="showImage(${num})" src="/lookie/upload/display?fileName=${upload.encodePath}">
+						<li><img onclick="showImage(${num})" src="/lookie/upload/display?fileName=${upload.encodePath}"></li>
 						<div class="bigPictureWrapper">
 						<img id="${num}" class="bigPicture" onclick="closeImage(${num})" src="/lookie/upload/bigPicture?fileName=${upload.encodePath}">
-						</div></li>
+						</div>
 					</c:when>
 					<c:otherwise>
 						<li><a href="/lookie/upload/download?fileName=${upload.encodePath}">${upload.fileName}</a>></li>
@@ -50,14 +52,16 @@
 		</div>
 	</form>
 	<script type="text/javascript">
-		$(document).ready(function(){
-			$(".bigPicture").hide();
-		})
+		
 		function showImage(img){
-				$("#"+img).show().css("display","flex").animate({width:"100%", height: "100%"},1000);
+				$(".bigPictureWrapper").css("display","flex").show();
+				$("#"+img).animate({width:"100%", height: "100%"},1000);
 		}
 		function closeImage(img){
-			$("#"+img).hide().animate({width:"0%", height:"0%"},1000);
+			$("#"+img).animate({width:"0%", height:"0%"},1000);
+			setTimeout(function(){
+				$(".bigPictureWrapper").hide();
+			},1000);
 		}
 		
 	</script>

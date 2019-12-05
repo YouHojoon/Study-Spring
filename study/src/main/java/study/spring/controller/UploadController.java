@@ -41,7 +41,7 @@ public class UploadController {
 	@PostMapping("/upload")
 	public ModelAndView upload(MultipartFile[] uploadFile) {
 		List<AttachFileDTO> list= new ArrayList<AttachFileDTO>();
-		String uploadFolder ="C:\\Users\\USER\\Desktop\\temp";
+		String uploadFolder ="C:\\Users\\N\\Desktop\\upload";
 		SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");
 		Date date= new Date();
 		String str=sdf.format(date);
