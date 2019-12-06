@@ -1,1 +1,1 @@
-select * from `reply`;
+SELECT * FROM `attach` /*!USE INDEX(PRIMARY)*/ WHERE num;

@@ -41,7 +41,7 @@ public class UploadController {
 	@PostMapping("/upload")
 	public ModelAndView upload(MultipartFile[] uploadFile) {
 		List<AttachFileDTO> list= new ArrayList<AttachFileDTO>();
-		String uploadFolder ="C:\\Users\\N\\Desktop\\upload";
+		String uploadFolder ="C:\\Users\\USER\\Desktop\\temp";
 		SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");
 		Date date= new Date();
 		String str=sdf.format(date);
@@ -122,5 +122,20 @@ public class UploadController {
 			e.printStackTrace();
 		}
 		return new ResponseEntity<Resource>(resource,headers,HttpStatus.OK);
+	}
+	@GetMapping("/delete")
+	public String deleteFile(@RequestParam("fileName") String fileName,@RequestParam("type") boolean type) {
+		File file;
+		try {
+			file=new File(fileName);
+			file.delete();
+			if(type) {
+				String displayPath=fileName.substring(0, fileName.lastIndexOf("\\"));
+				String displayFileName="\\s_"+fileName.substring(fileName.lastIndexOf("\\")+1);
+				file=new File(displayPath+displayFileName);
+				file.delete();
+			}
+		}catch(Exception e) {e.printStackTrace();}
+		return "redirect:/upload/upload";
 	}
 }

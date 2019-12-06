@@ -38,13 +38,14 @@
 			<c:set value="${num+1}" var="num"></c:set>
 				<c:choose>
 					<c:when test="${upload.image==true}">
-						<li><img onclick="showImage(${num})" src="/lookie/upload/display?fileName=${upload.encodePath}"></li>
+						<li><img onclick="showImage(${num})" src="/lookie/upload/display?fileName=${upload.encodePath}">
+						<span onclick="location.href='/lookie/upload/delete?fileName=${upload.encodePath}&type=${upload.image}'">x</span></li>
 						<div class="bigPictureWrapper">
 						<img id="${num}" class="bigPicture" onclick="closeImage(${num})" src="/lookie/upload/bigPicture?fileName=${upload.encodePath}">
 						</div>
 					</c:when>
 					<c:otherwise>
-						<li><a href="/lookie/upload/download?fileName=${upload.encodePath}">${upload.fileName}</a>></li>
+						<li><a href="/lookie/upload/download?fileName=${upload.encodePath}&type=${upload.image}">${upload.fileName}</a></li>
 					</c:otherwise>
 				</c:choose>
 				</c:forEach>

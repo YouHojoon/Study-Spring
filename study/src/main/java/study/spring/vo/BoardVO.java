@@ -1,6 +1,9 @@
 package study.spring.vo;
 
 import java.sql.Timestamp;
+import java.util.List;
+
+import study.spring.dto.AttachFileDTO;
 
 public class BoardVO {
 	private int rowNum;
@@ -11,6 +14,14 @@ public class BoardVO {
 	private Timestamp reg_date;
 	private Timestamp update_date;
 	private int replyCnt;
+	private List<BoardAttachFileVO> boardAttachFileVO;
+	
+	public List<BoardAttachFileVO> getBoardAttachFileVO() {
+		return boardAttachFileVO;
+	}
+	public void setBoardAttachFileVO(List<BoardAttachFileVO> boardAttachFileVO) {
+		this.boardAttachFileVO = boardAttachFileVO;
+	}
 	public int getReplyCnt() {
 		return replyCnt;
 	}
