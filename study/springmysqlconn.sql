@@ -1,1 +1,1 @@
-SELECT * FROM `attach` /*!USE INDEX(PRIMARY)*/ WHERE num;
+select username,authority from authorities where username = 'member00';

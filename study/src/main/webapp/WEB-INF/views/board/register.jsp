@@ -45,32 +45,46 @@
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800">Register</h1>
           <!-- DataTales Example -->
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Board Register Page</h6>
-            </div>
-            <div class="card-body">
-            	<form action="/lookie/board/register" method="post">
-            		<div class="form-group">
-   	 					<label for="exampleFormControlInput1">Title</label>
-    					<input class="form-control" id="exampleFormControlInput1" name="title">
-  					</div>
-            		<div class="form-group">
-    					<label for="exampleFormControlTextarea1">Content</label>
-    					<textarea name="content" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-  					</div>
-  					<div class="form-group">
-   	 					<label for="exampleFormControlInput1">Writer</label>
-    					<input class="form-control" id="exampleFormControlInput1" name="writer">
-  					</div>
-  					<div class="btn-group" role="group" aria-label="Basic example">
-  						<button class="btn btn-primary" type="submit" >Submit</button><button class="btn btn-primary" type="reset" >Reset</button>
-            			<button class="btn btn-primary" type="button" onclick="location.href='/lookie/board/list?page=${page}'">List</button>
+					<div class="card shadow mb-4">
+						<div class="card-header py-3">
+							<h6 class="m-0 font-weight-bold text-primary">Board Register
+								Page</h6>
+						</div>
+						<div class="card-body">
+							<form action="/lookie/board/register" method="post">
+								<div class="form-group">
+									<label for="exampleFormControlInput1">Title</label> <input
+										class="form-control" id="exampleFormControlInput1"
+										name="title">
+								</div>
+								<div class="form-group">
+									<label for="exampleFormControlTextarea1">Content</label>
+									<textarea name="content" class="form-control"
+										id="exampleFormControlTextarea1" rows="3"></textarea>
+								</div>
+								<div class="form-group">
+									<label for="exampleFormControlInput1">Writer</label> <input
+										class="form-control" id="exampleFormControlInput1"
+										name="writer">
+								</div>
+								<div class="btn-group" role="group" aria-label="Basic example">
+									<button class="btn btn-primary" type="submit">Submit</button>
+									<button class="btn btn-primary" type="reset">Reset</button>
+									<button class="btn btn-primary" type="button"
+										onclick="location.href='/lookie/board/list?page=${page}'">List</button>
+								</div>
+							</form>
+						</div>
 					</div>
-            	</form>
-            </div>
-          </div>
-        </div>
+					<div class="card shadow mb-4">
+						<div class="card-header py-3">
+							<h6 class="m-0 font-weight-bold text-primary">File Attach</h6>
+						</div>
+						<div class="card-body">
+							<input class="form-control" type="file" name="uploadFile" multiple="multiple">
+						</div>
+					</div>
+				</div>
         <!-- /.container-fluid -->
 
       </div>

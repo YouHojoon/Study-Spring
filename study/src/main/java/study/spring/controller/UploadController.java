@@ -25,7 +25,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -41,7 +40,7 @@ public class UploadController {
 	@PostMapping("/upload")
 	public ModelAndView upload(MultipartFile[] uploadFile) {
 		List<AttachFileDTO> list= new ArrayList<AttachFileDTO>();
-		String uploadFolder ="C:\\Users\\USER\\Desktop\\temp";
+		String uploadFolder ="C:\\Users\\N\\Desktop\\upload";
 		SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");
 		Date date= new Date();
 		String str=sdf.format(date);
